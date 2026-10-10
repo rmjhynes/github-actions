@@ -1,0 +1,8 @@
+name: "Run Shellcheck"
+
+runs:
+  using: composite
+  steps:
+    - name: Run Shellcheck
+      shell: bash
+      run: git ls-files -z '*.sh' | xargs -0 -r shellcheck
