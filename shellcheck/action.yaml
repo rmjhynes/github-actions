@@ -1,0 +1,7 @@
+name: "Run Shellcheck"
+
+runs:
+  using: composite
+  steps:
+    - name: Run Shellcheck
+      run: shellcheck **/*.sh
