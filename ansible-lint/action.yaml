@@ -1,0 +1,27 @@
+name: "Run Ansible Lint"
+inputs:
+  args:
+    description: "Arguments to be passed to ansible-lint command"
+    required: false
+  python_version:
+    default: "3.14"
+    required: false
+  setup_python:
+    description: "If python should be installed"
+    default: true
+    required: false
+  working_directory:
+    description: "The directory where to run ansible-lint from. Needed if you want to lint only a subset of your repository."
+    required: false
+runs:
+  using: composite
+  steps:
+    - name: Run ansible-lint
+      uses: ansible/ansible-lint@v26.9.0
+      with:
+        args: ${{ inputs.args }}
+        gh_action_ref: "v26.9.0"
+        setup_python: ${{ inputs.setup_python }}
+        python_version: ${{ inputs.python_version }}
+        working_directory: ${{ inputs.working_directory }}
+        requirements_file: ${{ inputs.ansible-requirements-file }}
