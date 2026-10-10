@@ -1,0 +1,23 @@
+name: "Label pull request"
+inputs:
+  configuration-path:
+    description: "The path to the label configuration file"
+    required: false
+    default: ".github/labeler.yml"
+  include-dot-paths:
+    description: "Whether or not to auto-include paths starting with dot"
+    required: false
+    default: true
+  sync-labels:
+    description: "Whether to remove configured labels when they no longer match. Labels not present in the labeler configuration are never removed."
+    required: false
+    default: true
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/labeler@v6
+      with:
+        configuration-path: ${{ inputs.configuration-path }}
+        dot: ${{ inputs.include-dot-paths }}
+        sync-labels: ${{ inputs.sync-labels }}
