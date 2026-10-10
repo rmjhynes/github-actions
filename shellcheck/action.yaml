@@ -5,4 +5,4 @@ runs:
   steps:
     - name: Run Shellcheck
       shell: bash
-      run: shellcheck **/*.sh
+      run: git ls-files -z '*.sh' | xargs -0 -r shellcheck
